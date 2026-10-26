@@ -26,3 +26,10 @@ This library implements exactly those two epoch systems and nothing else. Times 
 ## The awkward edge
 
 Under the 1900 epoch, `from_serial(60)` raises `ValueError`. Serial 60 is Excel's fictitious 1900-02-29, and the proleptic Gregorian calendar used by Python's `date` has no such day. There is no value of `date` that can represent it, so the library refuses rather than returning a wrong answer (such as 1900-02-28 or 1900-03-01). Under the 1904 epoch, serial 60 is a perfectly ordinary day (1904-03-01) and is returned normally.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
