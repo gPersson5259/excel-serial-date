@@ -1,6 +1,6 @@
 [project]
 name = "excel-serial-date"
-version = "0.1.2"
+version = "0.1.3"
 description = "Translates Excel serial date numbers to Python date objects, handling both epoch systems and the 1900 leap year bug."
 requires-python = ">=3.10"
 dependencies = []
